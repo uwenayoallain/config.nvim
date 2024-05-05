@@ -576,6 +576,25 @@ require('lazy').setup({
         -- gopls = {},
         pylsp = {
           filetypes = { 'python' },
+          settings = {
+            plugins = {
+              autopep8 = {
+                enabled = false,
+              },
+              flake8 = {
+                enabled = true,
+              },
+              rope_autoimport = {
+                enabled = true,
+              },
+              rope_completion = {
+                enabled = true,
+              },
+              yapf = {
+                enabled = true,
+              },
+            },
+          },
         },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
