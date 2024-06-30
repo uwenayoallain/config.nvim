@@ -94,7 +94,6 @@ vim.g.maplocalleader = ' '
 vim.g.have_nerd_font = true
 
 --
-vim.g.python3_host_prog = '/home/saint/projects/dumbshit/py/env/bin/python'
 -- [[ Setting options ]]
 -- See `:help vim.opt`
 -- NOTE: You can change these options as you wish!
@@ -604,8 +603,7 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
         tsserver = {},
-        --
-
+        emmet_language_server = {},
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -725,14 +723,23 @@ require('lazy').setup({
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      'luckasRanarison/tailwind-tools.nvim',
+      'onsails/lspkind-nvim',
     },
     config = function()
       -- See `:help cmp`
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
-      luasnip.config.setup {}
+      local lspkind = require 'lspkind'
+      local tailwindtools = require 'tailwind-tools.cmp'
 
+      luasnip.config.setup {}
       cmp.setup {
+        formatting = {
+          format = lspkind.cmp_format {
+            before = tailwindtools.lspkind_format,
+          },
+        },
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -801,19 +808,13 @@ require('lazy').setup({
     end,
   },
 
-  { -- You can easily change to a different colorscheme.
-    -- Change the name of the colorscheme plugin below, and then
-    -- change the command in the config to whatever the name of that colorscheme is.
-    --
+  {
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
-    'folke/tokyonight.nvim',
+    'catppuccin/nvim',
+    name = 'catppuccin',
     priority = 1000, -- Make sure to load this before all the other start plugins.
     init = function()
-      -- Load the colorscheme here.
-      -- Like many other themes, this one has different styles, and you could load
-      -- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-      vim.cmd.colorscheme 'tokyonight'
-
+      vim.cmd.colorscheme 'catppuccin-frappe'
       -- You can configure highlights by doing something like:
       vim.cmd.hi 'Comment gui=none'
     end,
