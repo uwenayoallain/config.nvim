@@ -865,7 +865,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'tsx', 'lua', 'luadoc', 'markdown', 'vim', 'vimdoc', 'typescript', 'javascript' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
@@ -874,6 +874,15 @@ require('lazy').setup({
         --  If you are experiencing weird indenting issues, add the language to
         --  the list of additional_vim_regex_highlighting and disabled languages for indent.
         additional_vim_regex_highlighting = { 'ruby' },
+      },
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = 'gnn', -- Initialize selection
+          node_incremental = 'grn', -- Increment to the next node
+          scope_incremental = 'grc', -- Increment to the next scope
+          node_decremental = 'grm', -- Decrement to the previous node
+        },
       },
       indent = { enable = true, disable = { 'ruby' } },
     },
