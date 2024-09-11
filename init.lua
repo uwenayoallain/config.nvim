@@ -606,7 +606,8 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        tsserver = {},
+        ts_ls = {},
+        astro = {},
         emmet_language_server = {},
         lua_ls = {
           -- cmd = {...},
@@ -688,8 +689,10 @@ require('lazy').setup({
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         css = { { 'prettierd', 'prettier' } },
+        html = { { 'prettierd', 'prettier' } },
         -- You can use 'stop_after_first' to run the first available formatter from the list
-        javascript = { "prettierd", "prettier", stop_after_first = true },
+        javascript = { 'prettierd', 'prettier', stop_after_first = true },
+        astro = { 'prettierd', 'prettier', 'prettier-plugin-astro', stop_after_first = true },
       },
     },
   },
@@ -876,7 +879,23 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'tsx', 'lua', 'luadoc', 'markdown','markdown_inline','query', 'vim', 'vimdoc', 'typescript', 'javascript' },
+      ensure_installed = {
+        'bash',
+        'c',
+        'diff',
+        'html',
+        'tsx',
+        'lua',
+        'luadoc',
+        'markdown',
+        'markdown_inline',
+        'query',
+        'vim',
+        'vimdoc',
+        'typescript',
+        'javascript',
+        'astro',
+      },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
